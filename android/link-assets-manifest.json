@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/LINESeedSans_A_Bd.ttf",
+      "sha1": "a3f318f0b8c5a0ab487e593a56eea7f4c5dd00bc"
+    },
+    {
+      "path": "assets/fonts/LINESeedSans_A_He.ttf",
+      "sha1": "9c798f89ee6047d4259dabbe58521e74c00a1b99"
+    },
+    {
+      "path": "assets/fonts/LINESeedSans_A_Rg.ttf",
+      "sha1": "8ae41c36df672b9ca4b884b0370254c329ecac02"
+    },
+    {
+      "path": "assets/fonts/LINESeedSans_A_Th.ttf",
+      "sha1": "04208b320f03dc3f78d6edfc62a46f8f1f018155"
+    },
+    {
+      "path": "assets/fonts/LINESeedSans_A_XBd.ttf",
+      "sha1": "f798843f205baaba5ad1510e0385fb475d31de8e"
+    },
+    {
+      "path": "assets/fonts/OtsutomeFont_Ver3.ttf",
+      "sha1": "046b9eda7c3f7dfd1eb1aba154208ead1ee93874"
+    }
+  ]
+}

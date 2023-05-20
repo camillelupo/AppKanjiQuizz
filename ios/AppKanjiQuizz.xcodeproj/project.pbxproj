@@ -14,6 +14,12 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-AppKanjiQuizz-AppKanjiQuizzTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-AppKanjiQuizz-AppKanjiQuizzTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		1E3A3E509622480B95DCAB5E /* OtsutomeFont_Ver3.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B196C799C714B3F8FDD600E /* OtsutomeFont_Ver3.ttf */; };
+		EB414DB3582E4FA6B788E1F2 /* LINESeedSans_A_Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6552C5D993FE4253BE2905B7 /* LINESeedSans_A_Bd.ttf */; };
+		A61468D9C88E4B379911BA9D /* LINESeedSans_A_He.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 73723729EE4E44B3BC93D3FC /* LINESeedSans_A_He.ttf */; };
+		4DBDCC734B494A31AE4A1795 /* LINESeedSans_A_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 688A1A5A254B45A3B721578F /* LINESeedSans_A_Rg.ttf */; };
+		59CFDE52884341EF85837CBC /* LINESeedSans_A_Th.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 511BA21458BD40CA97E38377 /* LINESeedSans_A_Th.ttf */; };
+		984BA0E40E5C427ABC188725 /* LINESeedSans_A_XBd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2010236338D4008B4AB4B16 /* LINESeedSans_A_XBd.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AppKanjiQuizz/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-AppKanjiQuizz-AppKanjiQuizzTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppKanjiQuizz-AppKanjiQuizzTests.release.xcconfig"; path = "Target Support Files/Pods-AppKanjiQuizz-AppKanjiQuizzTests/Pods-AppKanjiQuizz-AppKanjiQuizzTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		1B196C799C714B3F8FDD600E /* OtsutomeFont_Ver3.ttf */ = {isa = PBXFileReference; name = "OtsutomeFont_Ver3.ttf"; path = "../assets/fonts/OtsutomeFont_Ver3.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6552C5D993FE4253BE2905B7 /* LINESeedSans_A_Bd.ttf */ = {isa = PBXFileReference; name = "LINESeedSans_A_Bd.ttf"; path = "../assets/fonts/LINESeedSans_A_Bd.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		73723729EE4E44B3BC93D3FC /* LINESeedSans_A_He.ttf */ = {isa = PBXFileReference; name = "LINESeedSans_A_He.ttf"; path = "../assets/fonts/LINESeedSans_A_He.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		688A1A5A254B45A3B721578F /* LINESeedSans_A_Rg.ttf */ = {isa = PBXFileReference; name = "LINESeedSans_A_Rg.ttf"; path = "../assets/fonts/LINESeedSans_A_Rg.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		511BA21458BD40CA97E38377 /* LINESeedSans_A_Th.ttf */ = {isa = PBXFileReference; name = "LINESeedSans_A_Th.ttf"; path = "../assets/fonts/LINESeedSans_A_Th.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F2010236338D4008B4AB4B16 /* LINESeedSans_A_XBd.ttf */ = {isa = PBXFileReference; name = "LINESeedSans_A_XBd.ttf"; path = "../assets/fonts/LINESeedSans_A_XBd.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +134,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				ABA0ADDDE55943CE9AB7ED42 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +160,20 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		ABA0ADDDE55943CE9AB7ED42 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				1B196C799C714B3F8FDD600E /* OtsutomeFont_Ver3.ttf */,
+				6552C5D993FE4253BE2905B7 /* LINESeedSans_A_Bd.ttf */,
+				73723729EE4E44B3BC93D3FC /* LINESeedSans_A_He.ttf */,
+				688A1A5A254B45A3B721578F /* LINESeedSans_A_Rg.ttf */,
+				511BA21458BD40CA97E38377 /* LINESeedSans_A_Th.ttf */,
+				F2010236338D4008B4AB4B16 /* LINESeedSans_A_XBd.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +271,12 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				1E3A3E509622480B95DCAB5E /* OtsutomeFont_Ver3.ttf in Resources */,
+				EB414DB3582E4FA6B788E1F2 /* LINESeedSans_A_Bd.ttf in Resources */,
+				A61468D9C88E4B379911BA9D /* LINESeedSans_A_He.ttf in Resources */,
+				4DBDCC734B494A31AE4A1795 /* LINESeedSans_A_Rg.ttf in Resources */,
+				59CFDE52884341EF85837CBC /* LINESeedSans_A_Th.ttf in Resources */,
+				984BA0E40E5C427ABC188725 /* LINESeedSans_A_XBd.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
