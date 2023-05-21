@@ -1,7 +1,8 @@
 import {Animated, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
-import React, { useState} from "react";
+import React, {useState} from "react";
+import {BACKGROUND_COLOR, BLACK, GREEN, RED, WHITE, WHITE_SMOKE} from "../assets/colors";
 
-const CardKanji = ({style, children ,corectAnswer, onSelect}: any)=> {
+const CardKanji = ({style, item, corectAnswer, onSelect}: any) => {
     const animatedValue = new Animated.Value(0);
 
     const [cardColor, setCardColor] = useState('white');
@@ -21,21 +22,18 @@ const CardKanji = ({style, children ,corectAnswer, onSelect}: any)=> {
             useNativeDriver: true,
         }).start();
         changeCardColor();
-        if (corectAnswer) {
-            setTimeout(() => {
-                onSelect(corectAnswer); // Invoke the refreshQuizzTemplate callback function
-            }, 1000);
-        }
+        onSelect(item , corectAnswer);
     };
     const changeCardColor = () => {
         if (corectAnswer) {
-            setCardColor('green');
+            setCardColor(GREEN);
+            setTimeout(() => {
+                setCardColor(WHITE_SMOKE);
+            }, 300);
         } else {
-            setCardColor('red');
+            setCardColor(RED);
         }
-        setTimeout(() => {
-            setCardColor('white');
-        }, 1000);
+
     }
     const buttonScale = animatedValue.interpolate({
         inputRange: [0, 0.5, 1],
@@ -51,7 +49,7 @@ const CardKanji = ({style, children ,corectAnswer, onSelect}: any)=> {
     >
         <Animated.View
             style={[animatedScaleStyle ,styles.card, style, { backgroundColor: cardColor }]}>
-            <View>{children}</View>
+            <Text style={styles.text}>{item.kanji}</Text>
         </Animated.View>
     </TouchableWithoutFeedback>
     )
@@ -59,14 +57,19 @@ const CardKanji = ({style, children ,corectAnswer, onSelect}: any)=> {
 
 const styles = StyleSheet.create({
     card: {
-        shadowColor: 'black',
+        shadowColor: BLACK,
         shadowOffset: {width: 3, height: 2},
         shadowRadius: 10,
         shadowOpacity: 0.8,
         elevation: 8,
-        backgroundColor: 'white',
         padding: 20,
         borderRadius: 12
+    },
+    text: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: BLACK,
+        fontFamily: 'LINESeedSans_A_Bd',
     }
 });
 
