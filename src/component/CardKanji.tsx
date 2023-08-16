@@ -66,8 +66,10 @@ const styles = StyleSheet.create({
         borderRadius: 12
     },
     text: {
+        paddingTop: 5,
+        paddingBottom: 5,
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 30,
         color: BLACK,
         fontFamily: 'LINESeedSans_A_Bd',
     }

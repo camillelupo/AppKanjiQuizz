@@ -17,7 +17,7 @@ function QuizzTemplate({navigation, route}: any) {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     const [bool, setBool] = useState(false);
-    const [kanjiSelected, setKanjiSelected] = useState<Kanji>();
+    const [kanjiSelected, setKanjiSelected] = useState<Kanji | null>();
 
     const onSelectAnswer = (answer: any, corectAnswer: any) => {
         if (corectAnswer) {
@@ -25,7 +25,7 @@ function QuizzTemplate({navigation, route}: any) {
                 setSelectedAnswer(answer);
                 setIsLoading(true);
                 setKanjiSelected(null)
-            }, 300);
+            }, 500);
         } else {
             setKanjiSelected(answer);
         }
@@ -69,14 +69,49 @@ function QuizzTemplate({navigation, route}: any) {
 
         setAnswer(incorrectAnswers);
     }
+    const renderSeparator = () => {
+        if (data.length === 0) {
+            return null; // Don't render separator if list is empty
+        }
+
+        return <View />;
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             {kanji && !isLoading && answer ?
                 <View>
                     <View style={styles.questionContainer}>
-                        <Text style={styles.kanji}>{kanji.meanings[0]}</Text>
-                        <Text style={styles.lecture}>kun :{kanji.kunyomi} on : {kanji.onyomi}</Text>
+                        <FlatList
+                            data={kanji.fr.slice(0, 3)}
+                            keyExtractor={(item, index) => index.toString()}
+                            horizontal={true}
+                            renderItem={
+                                ({item}) => (
+                                    <Text style={styles.kanji}> {item} </Text>
+                                )
+                            }
+                        />
+                            <FlatList
+                                data={kanji.onyomi.slice(0, 3)}
+                                horizontal={true}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={
+                                    ({item}) => (
+                                        <Text style={styles.lecture}> {item} </Text>
+                                    )
+                                }
+                            />
+                        <FlatList
+                            data={kanji.kunyomi.slice(0, 3)}
+                            horizontal={true}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={
+                                ({item}) => (
+                                    <Text style={styles.lecture}> {item} </Text>
+                                )
+                            }
+                        />
                     </View>
                     <FlatList
                         data={answer}
@@ -91,7 +126,7 @@ function QuizzTemplate({navigation, route}: any) {
                     />
                     {kanjiSelected ?
                         <View style={styles.wrongAnswerContainer}>
-                            <Text style={styles.wrongAnswerMeaning}>{kanjiSelected.meanings[0]}</Text>
+                            <Text style={styles.wrongAnswerMeaning}>{kanjiSelected.fr[0]}</Text>
                             <Text style={styles.wrongAnswerYomi}>kun :{kanjiSelected.kunyomi} on
                                 : {kanjiSelected.onyomi}</Text>
                         </View>
@@ -114,38 +149,36 @@ const styles = StyleSheet.create({
     },
     kanji: {
         marginTop: 50,
-        fontSize: 50,
+        fontSize: 20,
         color: BLACK,
         textAlign: 'center',
         fontFamily: 'OtsutomeFont_Ver3',
     },
     lecture: {
-        width: '70%',
-        fontSize: 15,
+        fontSize: 16,
         paddingTop: 10,
         color: BLACK,
         fontFamily: 'LINESeedSans_A_Bd',
-        textAlign: 'center',
     },
     answer: {
-        fontSize: 30,
+        fontSize: 35,
         textAlign: 'center',
         fontFamily: 'LINESeedSans_A_Bd',
     },
     wrongAnswerContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50,
+        marginTop: 30,
     },
     wrongAnswerMeaning: {
-        fontSize: 20,
+        fontSize: 25,
         textAlign: 'center',
         fontFamily: 'OtsutomeFont_Ver3',
         color: RED,
         paddingBottom: 10,
     },
     wrongAnswerYomi: {
-        fontSize: 12,
+        fontSize: 16,
         textAlign: 'center',
         fontFamily: 'LINESeedSans_A_Bd',
         color: RED

@@ -1,14 +1,16 @@
 export default class Kanji {
     kanji: string;
     jlpt: number;
-    meanings: [string];
+    fr: [string];
+    eng: [string];
     onyomi: [string];
     kunyomi: [string];
 
     constructor(
         kanji: string,
         jlpt: number,
-        meanings: [string],
+        fr: [string],
+        eng: [string],
         onyomi: [string],
         kunyomi: [string]
 
@@ -16,7 +18,8 @@ export default class Kanji {
         this.kanji = kanji;
         this.onyomi = onyomi;
         this.kunyomi = kunyomi;
-        this.meanings = meanings;
+        this.fr = fr;
+        this.eng = eng;
         this.jlpt = jlpt;
     }
 }
