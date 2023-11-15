@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, View} from "react-native";
-import Card from "../component/Card";
-import Kanji from "../models/Kanji";
-import {getRandomKanji} from "../services/QuizzService";
+import React, {useEffect, useState} from 'react';
+import {Animated, Image, SafeAreaView, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
+
 
 import {
     BACKGROUND_COLOR,
@@ -11,34 +9,39 @@ import {
 
 } from "../assets/colors";
 import Header from "../component/Header";
+import ChoiceDifficulty from "../component/ChoiceDifficulty";
+import ButtonChoice from "../component/ButtonChoice";
+import {useTranslation} from "react-i18next";
 
 
 
 function HomeTemplate({navigation}: any) {
+    const [language, setLanguage] = useState('')
+    const [bool, setBoolean] = useState(false)
+    const { t, i18n } = useTranslation();
 
+    const onSelectAnswer = (answer: any) => {
+        setLanguage(answer)
+        setBoolean(true)
+    }
+    const returnBool= () => {
+        setBoolean(false)
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.chooseContainer}>
-                <Text style={styles.textChoose}>Selectionnez le niveau de kanji</Text>
+                <Text style={styles.textChoose}> {t('selectLevel')}</Text>
             </View>
-            <View style={styles.cardContainer}>
-                <Card navigation={navigation} jplt={4} style={styles.card}>
-                    <Text style={styles.cardTitle}>N4</Text>
-                </Card>
-                <Card style={styles.card} jplt={3}  navigation={navigation}>
-                    <Text style={styles.cardTitle}>N3</Text>
-                </Card>
-            </View>
-            <View style={styles.cardContainer}>
-                <Card style={styles.card} jplt={2}  navigation={navigation}>
-                    <Text style={styles.cardTitle}>N2</Text>
-                </Card>
-                <Card style={styles.card} jplt={1}  navigation={navigation}>
-                    <Text style={styles.cardTitle}>N1</Text>
-                </Card>
-            </View>
-            {/*<FlatList data={} renderItem={}/>*/}
+            {!bool ?
+                <View style={styles.buttonContainer}>
+                    <ButtonChoice language={'french'} onSelect={onSelectAnswer}/>
+                    <ButtonChoice language={'japanese'} onSelect={onSelectAnswer}/>
+                </View>
+                :
+                <ChoiceDifficulty language={language} navigation={navigation} returnBool={returnBool}/>
+            }
         </SafeAreaView>
+
     );
 }
 
@@ -62,16 +65,22 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 20,
     },
+    buttonContainer: {
+        flex: 0.6,
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
     cardContainer: {
-        flex: 1,
-        flexDirection: 'row',
+        flex: 0.8,
+        flexDirection: 'column',
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },
     card: {
         backgroundColor: WHITE_SMOKE,
-        width: '40%',
-        height: '70%',
+        width: '90%',
+        height: '20%',
         justifyContent: 'center',
         alignItems: 'center',
     },

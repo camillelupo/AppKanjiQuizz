@@ -15,7 +15,7 @@ function QuizzTemplate({navigation, route}: any) {
     const [kanjiList, setKanjiList] = React.useState<Kanji[]>([]);
     const [kanji, setKanji] = React.useState<Kanji>();
     const [selectedAnswer, setSelectedAnswer] = useState(null);
-
+    const [language, setLanguage] = useState(route.params.language)
     const [bool, setBool] = useState(false);
     const [kanjiSelected, setKanjiSelected] = useState<Kanji | null>();
 
@@ -40,14 +40,13 @@ function QuizzTemplate({navigation, route}: any) {
             setIsLoading(false);
 
         }, 500);
-        onRefresh();
+        fetchKanji();
         // Clear the timeout when the component unmounts or when the isLoading state changes
         return () => clearTimeout(timeout);
-
         // Reset selectedAnswer after refresh
     }, [selectedAnswer]);
 
-    const onRefresh = () => {
+    const fetchKanji = () => {
         getRandomKanji(route.params.jplt, 10).then((res: Kanji[]) => {
             setKanjiList(res)
             // Sélectionner le premier élément comme réponse correcte
@@ -74,24 +73,25 @@ function QuizzTemplate({navigation, route}: any) {
             return null; // Don't render separator if list is empty
         }
 
-        return <View />;
+        return <View/>;
     };
 
     return (
         <SafeAreaView style={styles.container}>
-            {kanji && !isLoading && answer ?
-                <View>
-                    <View style={styles.questionContainer}>
-                        <FlatList
-                            data={kanji.fr.slice(0, 3)}
-                            keyExtractor={(item, index) => index.toString()}
-                            horizontal={true}
-                            renderItem={
-                                ({item}) => (
-                                    <Text style={styles.kanji}> {item} </Text>
-                                )
-                            }
-                        />
+            {kanji && !isLoading && answer ? (
+                language === 'french' ? (
+                    <View>
+                        <View style={styles.questionContainer}>
+                            <FlatList
+                                data={kanji.fr.slice(0, 3)}
+                                keyExtractor={(item, index) => index.toString()}
+                                horizontal={true}
+                                renderItem={
+                                    ({item}) => (
+                                        <Text style={styles.kanji}> {item} </Text>
+                                    )
+                                }
+                            />
                             <FlatList
                                 data={kanji.onyomi.slice(0, 3)}
                                 horizontal={true}
@@ -102,38 +102,87 @@ function QuizzTemplate({navigation, route}: any) {
                                     )
                                 }
                             />
+                            <FlatList
+                                data={kanji.kunyomi.slice(0, 3)}
+                                horizontal={true}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={
+                                    ({item}) => (
+                                        <Text style={styles.lecture}> {item} </Text>
+                                    )
+                                }
+                            />
+                        </View>
                         <FlatList
-                            data={kanji.kunyomi.slice(0, 3)}
-                            horizontal={true}
+                            data={answer}
                             keyExtractor={(item, index) => index.toString()}
                             renderItem={
                                 ({item}) => (
-                                    <Text style={styles.lecture}> {item} </Text>
+                                    <CardKanji style={styles.cardKanji} onSelect={onSelectAnswer}
+                                               corectAnswer={item === kanji} item={item} language={language}></CardKanji>
                                 )
                             }
+                            numColumns={3}
+                        />
+                        {kanjiSelected ?
+                            <View style={styles.wrongAnswerContainer}>
+                                <Text style={styles.wrongAnswerMeaning}>{kanjiSelected.fr[0]}</Text>
+                                <Text style={styles.wrongAnswerYomi}>kun :{kanjiSelected.kunyomi} on
+                                    : {kanjiSelected.onyomi}</Text>
+                            </View>
+                            : null}
+
+                    </View>) : (
+                    <View>
+                        <View style={styles.questionContainer}>
+                            <FlatList
+                                data={kanji.kanji}
+                                keyExtractor={(item, index) => index.toString()}
+                                horizontal={true}
+                                renderItem={
+                                    ({item}) => (
+                                        <Text style={styles.kanji}> {item} </Text>
+                                    )
+                                }
+                            />
+                            <FlatList
+                                data={kanji.onyomi.slice(0, 3)}
+                                horizontal={true}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={
+                                    ({item}) => (
+                                        <Text style={styles.lecture}> {item} </Text>
+                                    )
+                                }
+                            />
+                            <FlatList
+                                data={kanji.kunyomi.slice(0, 3)}
+                                horizontal={true}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={
+                                    ({item}) => (
+                                        <Text style={styles.lecture}> {item} </Text>
+                                    )
+                                }
+                            />
+                        </View>
+                        <FlatList
+                            data={answer}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={
+                                ({item}) => (
+                                    <CardKanji style={styles.cardKanji} onSelect={onSelectAnswer}
+                                               corectAnswer={item === kanji} item={item} language={language}></CardKanji>
+                                )
+                            }
+                            numColumns={3}
                         />
                     </View>
-                    <FlatList
-                        data={answer}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={
-                            ({item}) => (
-                                <CardKanji style={styles.cardKanji} onSelect={onSelectAnswer}
-                                           corectAnswer={item === kanji} item={item}></CardKanji>
-                            )
-                        }
-                        numColumns={3}
-                    />
-                    {kanjiSelected ?
-                        <View style={styles.wrongAnswerContainer}>
-                            <Text style={styles.wrongAnswerMeaning}>{kanjiSelected.fr[0]}</Text>
-                            <Text style={styles.wrongAnswerYomi}>kun :{kanjiSelected.kunyomi} on
-                                : {kanjiSelected.onyomi}</Text>
-                        </View>
-                        : null}
 
-                </View> : <BrushActivityIndicator/>
-            }
+                )
+            ) : (
+                <BrushActivityIndicator/>
+            )}
         </SafeAreaView>
     )
 }
@@ -157,6 +206,7 @@ const styles = StyleSheet.create({
     lecture: {
         fontSize: 16,
         paddingTop: 10,
+        lineHeight: 25,
         color: BLACK,
         fontFamily: 'LINESeedSans_A_Bd',
     },
@@ -179,6 +229,7 @@ const styles = StyleSheet.create({
     },
     wrongAnswerYomi: {
         fontSize: 16,
+        lineHeight: 30,
         textAlign: 'center',
         fontFamily: 'LINESeedSans_A_Bd',
         color: RED

@@ -2,7 +2,7 @@ import React from "react";
 import {Animated, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
 
 
-const Card = ({style, children , navigation, jplt} : any) => {
+const Card = ({style, children ,language, navigation, jplt} : any) => {
     const animatedValue = new Animated.Value(0);
     const onPressIn = () => {
         Animated.spring(animatedValue, {
@@ -29,7 +29,9 @@ const Card = ({style, children , navigation, jplt} : any) => {
 
     return (
         <TouchableWithoutFeedback onPressIn={onPressIn} onPressOut={onPressOut}
-        onPress={() => {navigation.navigate('QuizzTemplate', {jplt: jplt})}}
+                                  onPress={() => {
+                                      navigation.navigate('QuizzTemplate', { jplt: jplt, language: language });
+                                  }}
         >
             <Animated.View style={[animatedScaleStyle ,styles.card, style]}>
             <View >{children}</View>
