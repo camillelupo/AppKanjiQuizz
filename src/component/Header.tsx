@@ -2,6 +2,8 @@ import React from "react";
 import {Image, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
 import {RED, WHITE} from "../assets/colors";
 import {useNavigation} from "@react-navigation/native";
+import {useTranslation} from "react-i18next";
+import Flags from "./Flag";
 
 
 const Header = ()=> {
@@ -10,12 +12,21 @@ const Header = ()=> {
         // @ts-ignore
         navigation.navigate('HomeTemplate');
     };
+
+    const { t, i18n } = useTranslation()
+
+    const changeLanguageHandler = (lang: string | undefined) :any =>
+    {
+        i18n.changeLanguage(lang)
+    }
+
     return (
         <View style={styles.titleContainer}>
             <TouchableWithoutFeedback onPress={navigateToHome}>
                 <Image style={styles.image} source={require('../assets/round_logo.png')}/>
             </TouchableWithoutFeedback>
             <View style={styles.rightItem}><Text style={styles.sectionTitle}>Kanji Quizz</Text></View>
+            {/*<Text> <Flags /></Text>*/}
         </View>
     )
 };

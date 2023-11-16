@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Card from "./Card";
 import {StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
 import {BACKGROUND_COLOR, BLACK, WHITE_SMOKE} from "../assets/colors";
+import buttonChoice from "./ButtonChoice";
 
 function ChoiceDifficulty ({navigation , returnBool ,language }: any) {
     return (
@@ -19,7 +20,7 @@ function ChoiceDifficulty ({navigation , returnBool ,language }: any) {
                 <Text style={styles.cardTitle}>Tres difficile</Text>
             </Card>
             <TouchableWithoutFeedback onPress={returnBool}>
-                <Text>Retour</Text>
+                <Text style={styles.textChoose}>Retour</Text>
             </TouchableWithoutFeedback>
         </View>
 

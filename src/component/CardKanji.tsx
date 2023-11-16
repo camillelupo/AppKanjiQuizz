@@ -6,9 +6,6 @@ const CardKanji = ({style, item, corectAnswer, onSelect, language}: any) => {
     const animatedValue = new Animated.Value(0);
 
     const [cardColor, setCardColor] = useState('white');
-    useEffect(() => {
-        console.log(language)
-    }, []);
 
     const onPressIn = () => {
         Animated.spring(animatedValue, {

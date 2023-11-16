@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {Animated, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
+import {BLACK, WHITE_SMOKE} from "../assets/colors";
 
 function ButtonChoice({language, onSelect}: any) {
     const animatedValue = new Animated.Value(0);
@@ -10,9 +11,6 @@ function ButtonChoice({language, onSelect}: any) {
     const animatedScaleStyle = {
         transform: [{scale: buttonScale}],
     };
-    useEffect(() => {
-        console.log(language)
-    }, []);
     const onPressIn = () => {
         Animated.spring(animatedValue, {
             toValue: 1,
@@ -35,9 +33,9 @@ function ButtonChoice({language, onSelect}: any) {
                                   onPressOut={onPressOut}
         >
             <Animated.View
-                style={[animatedScaleStyle]}>
+                style={[animatedScaleStyle , styles.button]}>
                 {language === 'french' ?
-                    <Text>Francais vers japonais</Text>
+                    <Text style={styles.text}>Francais vers japonais</Text>
                     : <></>}
                 {language === 'japanese' ?
                     <Text>Japonais vers Français</Text> : <></>
@@ -48,7 +46,14 @@ function ButtonChoice({language, onSelect}: any) {
 }
 
 const styles = StyleSheet.create({
-    button: {}
+    button: {
+        backgroundColor: WHITE_SMOKE,
+        width: '90%',
+        height: '20%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {}
 })
 
 export default ButtonChoice;

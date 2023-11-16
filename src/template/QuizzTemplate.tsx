@@ -16,7 +16,6 @@ function QuizzTemplate({navigation, route}: any) {
     const [kanji, setKanji] = React.useState<Kanji>();
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [language, setLanguage] = useState(route.params.language)
-    const [bool, setBool] = useState(false);
     const [kanjiSelected, setKanjiSelected] = useState<Kanji | null>();
 
     const onSelectAnswer = (answer: any, corectAnswer: any) => {
@@ -56,10 +55,6 @@ function QuizzTemplate({navigation, route}: any) {
         });
     }
 
-    const itemAnswer = ({item}: any) => {
-        console.log(item);
-        setBool(false);
-    }
     const answerInit = (res: any) => {
 
         const answersList = res.slice(0, 6);
@@ -68,14 +63,6 @@ function QuizzTemplate({navigation, route}: any) {
 
         setAnswer(incorrectAnswers);
     }
-    const renderSeparator = () => {
-        if (data.length === 0) {
-            return null; // Don't render separator if list is empty
-        }
-
-        return <View/>;
-    };
-
     return (
         <SafeAreaView style={styles.container}>
             {kanji && !isLoading && answer ? (
@@ -177,6 +164,13 @@ function QuizzTemplate({navigation, route}: any) {
                             }
                             numColumns={3}
                         />
+                        {kanjiSelected ?
+                            <View style={styles.wrongAnswerContainer}>
+                                <Text style={styles.wrongAnswerMeaning}>{kanjiSelected.kanji}</Text>
+                                <Text style={styles.wrongAnswerYomi}>kun :{kanjiSelected.kunyomi} on
+                                    : {kanjiSelected.onyomi}</Text>
+                            </View>
+                            : null}
                     </View>
 
                 )

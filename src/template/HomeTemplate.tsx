@@ -29,16 +29,18 @@ function HomeTemplate({navigation}: any) {
     }
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.chooseContainer}>
-                <Text style={styles.textChoose}> {t('selectLevel')}</Text>
-            </View>
             {!bool ?
                 <View style={styles.buttonContainer}>
                     <ButtonChoice language={'french'} onSelect={onSelectAnswer}/>
                     <ButtonChoice language={'japanese'} onSelect={onSelectAnswer}/>
                 </View>
                 :
+                <View style={styles.container}>
+                    <View style={styles.chooseContainer}>
+                        <Text style={styles.textChoose}> {t('selectLevel')}</Text>
+                    </View>
                 <ChoiceDifficulty language={language} navigation={navigation} returnBool={returnBool}/>
+                </View>
             }
         </SafeAreaView>
 
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     buttonContainer: {
-        flex: 0.6,
+        flex: 0.8,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
         alignItems: 'center'
