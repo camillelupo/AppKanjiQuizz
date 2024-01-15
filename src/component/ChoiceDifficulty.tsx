@@ -7,16 +7,16 @@ import buttonChoice from "./ButtonChoice";
 function ChoiceDifficulty ({navigation , returnBool ,language }: any) {
     return (
         <View style={styles.cardContainer}>
-            <Card navigation={navigation} jplt={4} language={language} style={styles.card}>
+            <Card navigation={navigation} jplt={4} language={language} style={{ ...styles.card, backgroundColor: '#7FFF7F' }} >
                 <Text style={styles.cardTitle}>Facile</Text>
             </Card>
-            <Card style={styles.card} jplt={3} language={language}  navigation={navigation}>
+            <Card style={{ ...styles.card, backgroundColor: '#87CEFA' }}  jplt={3} language={language}  navigation={navigation}>
                 <Text style={styles.cardTitle}>Moyen</Text>
             </Card>
-            <Card style={styles.card} jplt={2} language={language}  navigation={navigation}>
+            <Card style={{ ...styles.card, backgroundColor: '#FFA500' }}  jplt={2} language={language}  navigation={navigation}>
                 <Text style={styles.cardTitle}>Difficile</Text>
             </Card>
-            <Card style={styles.card} jplt={1} language={language}  navigation={navigation}>
+            <Card style={{ ...styles.card, backgroundColor: '#FF0000' }}  jplt={1} language={language}  navigation={navigation}>
                 <Text style={styles.cardTitle}>Tres difficile</Text>
             </Card>
             <TouchableWithoutFeedback onPress={returnBool}>

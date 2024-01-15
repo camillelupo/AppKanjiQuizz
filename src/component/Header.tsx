@@ -26,7 +26,7 @@ const Header = ()=> {
                 <Image style={styles.image} source={require('../assets/round_logo.png')}/>
             </TouchableWithoutFeedback>
             <View style={styles.rightItem}><Text style={styles.sectionTitle}>Kanji Quizz</Text></View>
-            {/*<Text> <Flags /></Text>*/}
+           {/*<Text> <Flags /></Text>*/}
         </View>
     )
 };

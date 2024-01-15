@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Animated, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
+import {Animated, Image, StyleSheet, Text, TouchableWithoutFeedback, View} from "react-native";
 import {BLACK, WHITE_SMOKE} from "../assets/colors";
 
 function ButtonChoice({language, onSelect}: any) {
@@ -32,15 +32,19 @@ function ButtonChoice({language, onSelect}: any) {
         <TouchableWithoutFeedback onPressIn={onPressIn}
                                   onPressOut={onPressOut}
         >
-            <Animated.View
-                style={[animatedScaleStyle , styles.button]}>
-                {language === 'french' ?
-                    <Text style={styles.text}>Francais vers japonais</Text>
-                    : <></>}
-                {language === 'japanese' ?
-                    <Text>Japonais vers Français</Text> : <></>
-                }
-            </Animated.View>
+            {language === 'french' ? (
+                <TouchableWithoutFeedback onPressIn={onPressIn} onPressOut={onPressOut}>
+                    <Animated.View  style={[animatedScaleStyle, styles.button]}>
+                        <Text style={{...styles.text }}>Francais vers japonais</Text>
+                    </Animated.View>
+                </TouchableWithoutFeedback>
+            ) : language === 'japanese' ? (
+                <TouchableWithoutFeedback onPressIn={onPressIn} onPressOut={onPressOut}>
+                    <Animated.View  style={[animatedScaleStyle, styles.button]}>
+                        <Text style={{...styles.text}}>Japonais vers Français</Text>
+                    </Animated.View>
+                </TouchableWithoutFeedback>
+            ) : null}
         </TouchableWithoutFeedback>
     )
 }
@@ -52,8 +56,24 @@ const styles = StyleSheet.create({
         height: '20%',
         justifyContent: 'center',
         alignItems: 'center',
+        shadowColor: 'black',
+        shadowOffset: {width: 3, height: 2},
+        shadowRadius: 10,
+        shadowOpacity: 0.8,
+        elevation: 8,
+        padding: 20,
+        borderRadius: 12
     },
-    text: {}
+    text: {
+        fontSize: 20,
+        fontWeight: '600',
+        color: BLACK,
+    },
+    flagImage: {
+        width: 20, // Adjust the width as needed
+        height: 20, // Adjust the height as needed
+        marginRight: 10, // Optional: Add margin for spacing
+    },
 })
 
 export default ButtonChoice;

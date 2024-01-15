@@ -35,11 +35,12 @@ function QuizzTemplate({navigation, route}: any) {
 
 
     useEffect(() => {
+
+        fetchKanji();
         const timeout = setTimeout(() => {
             setIsLoading(false);
 
         }, 500);
-        fetchKanji();
         // Clear the timeout when the component unmounts or when the isLoading state changes
         return () => clearTimeout(timeout);
         // Reset selectedAnswer after refresh
@@ -51,7 +52,6 @@ function QuizzTemplate({navigation, route}: any) {
             // Sélectionner le premier élément comme réponse correcte
             setKanji(res[0]);
             answerInit(res);
-            setSelectedAnswer(null);
         });
     }
 

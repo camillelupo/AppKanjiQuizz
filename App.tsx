@@ -6,6 +6,7 @@
  */
 
 import React, {useEffect} from 'react';
+import 'react-native-gesture-handler';
 import Route from "./src/navigation/Route";
 import {SafeAreaView, View} from "react-native";
 import SplashScreen from "react-native-splash-screen";
